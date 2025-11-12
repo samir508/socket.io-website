@@ -1,4 +1,20 @@
----
+let localStream;
+let peerConnection;
+
+async function startCall() {
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    document.getElementById('myVideo').srcObject = localStream;
+  } catch (error) {
+    console.error('Error accessing media devices.', error);
+  }
+}
+
+function sendMessage() {
+  const message = document.getElementById('message').value;
+  document.getElementById('messages').innerHTML += `<p>আপনি: ${message}</p>`;
+  document.getElementById('message').value = '';
+}---
 title: Tutorial - Introduction
 sidebar_label: Introduction
 slug: introduction
